@@ -2,20 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 98.04%;
+    --foreground: 216.52 33.33% 27.06%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 216.52 17.22% 32.15%;
+    --popover: 220 5% 98%;
+    --popover-foreground: 216.52 33.33% 27.06%;
+    --card: 0 0% 95%;
+    --card-foreground: 216.52 33.33% 27.06%;
+    --border: 0 0% 89.23%;
+    --input: 0 0% 89.41%;
+    --primary: 220 100% 70%;
+    --primary-foreground: 220 5% 95%;
+    --secondary: 0 0% 90.2%;
+    --secondary-foreground: 216.52 33.33% 27.06%;
+    --accent: 0 0% 90.2%;
+    --accent-foreground: 216.52 33.33% 27.06%;
+    --destructive: 360 61.24% 60.31%;
+    --destructive-foreground: 220 5% 95%;
+    --ring: 220 100% 70%;
+    --chart-1: 220 100% 70%;
+    --chart-2: 0 0% 90.2%;
+    --chart-3: 0 0% 90.2%;
+    --chart-4: 0 0% 93.2%;
+    --chart-5: 220 103% 70%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 14.62%;
+    --foreground: 216.52 33.33% 95.29%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 216.52 17.22% 75.69%;
+    --popover: 0 0% 14.51%;
+    --popover-foreground: 216.52 33.33% 95.29%;
+    --card: 0 0% 17%;
+    --card-foreground: 216.52 33.33% 95.29%;
+    --border: 0 0% 24.77%;
+    --input: 0 0% 24.59%;
+    --primary: 220 100% 70%;
+    --primary-foreground: 220 5% 5%;
+    --secondary: 0 0% 29.8%;
+    --secondary-foreground: 216.52 33.33% 95.29%;
+    --accent: 0 0% 29.8%;
+    --accent-foreground: 216.52 33.33% 95.29%;
+    --destructive: 0 61.39% 60.39%;
+    --destructive-foreground: 220 5% 5%;
+    --ring: 220 100% 70%;
+    --chart-1: 220 100% 70%;
+    --chart-2: 0 0% 29.8%;
+    --chart-3: 0 0% 29.8%;
+    --chart-4: 0 0% 32.8%;
+    --chart-5: 220 103% 70%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
