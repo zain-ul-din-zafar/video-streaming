@@ -5,14 +5,14 @@ import Loader from "@/components/shared/loader";
 import { collections, firestore } from "@/lib/firebase";
 import { Playlist } from "@/types/playlist";
 import { collection, doc } from "firebase/firestore";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useDocument } from "react-firebase-hooks/firestore";
 
-export default function ScreenEditPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default function ScreenEditPage() {
+  const { id } = useParams();
 
   const [data, loading] = useDocument(
-    doc(collection(firestore, collections.playlists), id)
+    doc(collection(firestore, collections.playlists), id as string)
   );
 
   if (loading) return <Loader />;

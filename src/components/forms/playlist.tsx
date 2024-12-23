@@ -36,7 +36,10 @@ export default function PlaylistForm({
 }) {
   const form = useForm<PlaylistFormSchemaType>({
     resolver: zodResolver(PlaylistFormSchema),
-    defaultValues,
+    defaultValues: defaultValues || {
+      name: "",
+      description: "",
+    },
   });
 
   const [loading, startSubmitTransition] = useTransition();
@@ -61,7 +64,7 @@ export default function PlaylistForm({
               }));
 
               const isSameDoc =
-                defaultValues && defaultValues.id === docs[0].id;
+                defaultValues && docs[0] && defaultValues.id === docs[0].id;
 
               if (docs.length > 0 && !isSameDoc) {
                 form.setError("name", {

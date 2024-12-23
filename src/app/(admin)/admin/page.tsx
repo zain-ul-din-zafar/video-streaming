@@ -11,9 +11,9 @@ import { collection, deleteDoc, doc, orderBy, query } from "firebase/firestore";
 import {
   EditIcon,
   EllipsisVertical,
-  EyeIcon,
   Monitor,
   MonitorX,
+  Settings,
   TrashIcon,
 } from "lucide-react";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -100,8 +100,8 @@ export default function Admin() {
                     <DropdownMenuContent>
                       <Link href={`${ROUTES.screenDetails}/${playlist.id}`}>
                         <DropdownMenuItem>
-                          <EyeIcon />
-                          View
+                          <Settings />
+                          Manage
                         </DropdownMenuItem>
                       </Link>
                       <Link
