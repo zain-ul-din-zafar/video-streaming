@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <HomeIcon />
             </Link>{" "}
             <span className="mx-2">/</span>{" "}
-            <Link href={ROUTES.admin}>Video streaming</Link>
+            <Link href={ROUTES.admin}>Dashboard</Link>
           </h2>
           <nav className="ml-auto">
             <Link href={ROUTES.newScreen}>
