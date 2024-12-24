@@ -47,7 +47,7 @@ export default function Home() {
         setActiveIdx((val) => (val - 1 < 0 ? playlists.length - 1 : val - 1));
 
       if (key === "Enter") {
-        // document.documentElement.requestFullscreen();
+        document.documentElement.requestFullscreen();
         setPlay((val) => !val);
       }
 
@@ -103,7 +103,7 @@ export default function Home() {
                 )}
                 onClick={() => {
                   setActiveIdx(i);
-                  // document.documentElement.requestFullscreen();
+                  document.documentElement.requestFullscreen();
                   setPlay(true);
                 }}
               >
