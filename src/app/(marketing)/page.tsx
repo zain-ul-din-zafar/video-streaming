@@ -7,7 +7,7 @@ import {
   Card,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import VideoPlayer from "@/components/video-player";
 import { ROUTES } from "@/lib/constants";
@@ -30,7 +30,7 @@ export default function Home() {
 
   const playlists = data?.docs.map((doc) => ({
     ...doc.data(),
-    id: doc.id,
+    id: doc.id
   })) as Playlist[];
 
   const [activeIdx, setActiveIdx] = useState<number>(0);
@@ -47,7 +47,7 @@ export default function Home() {
         setActiveIdx((val) => (val - 1 < 0 ? playlists.length - 1 : val - 1));
 
       if (key === "Enter") {
-        document.documentElement.requestFullscreen();
+        // document.documentElement.requestFullscreen();
         setPlay((val) => !val);
       }
 
@@ -60,6 +60,14 @@ export default function Home() {
 
     return () => window.removeEventListener("keydown", onKeyPress);
   }, [playlists]);
+
+  useEffect(() => {
+    if (!playlists) return;
+    if (!playlists[activeIdx]) {
+      setPlay(false);
+      setActiveIdx(0);
+    }
+  }, [playlists, activeIdx]);
 
   if (loading) return <Loader />;
 
@@ -79,7 +87,7 @@ export default function Home() {
     );
   }
 
-  if (play) return <VideoPlayer />;
+  if (play) return <VideoPlayer playlist={playlists[activeIdx]} />;
 
   return (
     <>
@@ -95,7 +103,7 @@ export default function Home() {
                 )}
                 onClick={() => {
                   setActiveIdx(i);
-                  document.documentElement.requestFullscreen();
+                  // document.documentElement.requestFullscreen();
                   setPlay(true);
                 }}
               >

@@ -5,10 +5,17 @@ import { Button } from "./ui/button";
 import { collection, deleteField, doc, updateDoc } from "firebase/firestore";
 import { collections, firestore } from "@/lib/firebase";
 import { GripVertical, Loader, TrashIcon } from "lucide-react";
+import urlSlug from "url-slug";
 
 const ItemType = "VIDEO";
 
-export function DraggableVideo({ video, index, moveVideo, moving }: any) {
+export function DraggableVideo({
+  video,
+  index,
+  moveVideo,
+  moving,
+  docId
+}: any) {
   const ref = useRef(null);
 
   const [, drop] = useDrop({
@@ -61,10 +68,11 @@ export function DraggableVideo({ video, index, moveVideo, moving }: any) {
           size={"icon"}
           variant={"ghost"}
           onClick={() => {
+            const slug = urlSlug(video.uri);
             updateDoc(
-              doc(collection(firestore, collections.playlists), video.id),
+              doc(collection(firestore, collections.playlists), docId),
               {
-                [`videos.${video.slug}`]: deleteField()
+                [`videos.${slug}`]: deleteField()
               }
             );
           }}

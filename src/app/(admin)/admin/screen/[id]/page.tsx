@@ -157,6 +157,7 @@ export default function ScreenDetails() {
                       video={video}
                       moveVideo={moveVideo}
                       moving={moving}
+                      docId={playlist.id}
                     />
                   );
                 })}
