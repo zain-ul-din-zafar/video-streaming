@@ -4,7 +4,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,7 +21,7 @@ import {
   serverTimestamp,
   setDoc,
   updateDoc,
-  where,
+  where
 } from "firebase/firestore";
 import { collections, firestore } from "@/lib/firebase";
 import { useTransition } from "react";
@@ -30,7 +30,7 @@ import { ROUTES } from "@/lib/constants";
 import { Playlist } from "@/types/playlist";
 
 export default function PlaylistForm({
-  defaultValues,
+  defaultValues
 }: {
   defaultValues?: Playlist;
 }) {
@@ -38,8 +38,8 @@ export default function PlaylistForm({
     resolver: zodResolver(PlaylistFormSchema),
     defaultValues: defaultValues || {
       name: "",
-      description: "",
-    },
+      description: ""
+    }
   });
 
   const [loading, startSubmitTransition] = useTransition();
@@ -60,7 +60,7 @@ export default function PlaylistForm({
               const q = query(colRef, where("name", "==", data.name));
               const docs = (await getDocs(q)).docs.map((doc) => ({
                 id: doc.id,
-                ...doc.data(),
+                ...doc.data()
               }));
 
               const isSameDoc =
@@ -68,7 +68,7 @@ export default function PlaylistForm({
 
               if (docs.length > 0 && !isSameDoc) {
                 form.setError("name", {
-                  message: "screen with same name already exists",
+                  message: "screen with same name already exists"
                 });
                 return;
               }
@@ -76,13 +76,13 @@ export default function PlaylistForm({
               if (defaultValues) {
                 await updateDoc(doc(colRef, defaultValues.id), {
                   ...data,
-                  updatedAt: serverTimestamp(),
+                  updatedAt: serverTimestamp()
                 });
               } else {
                 await setDoc(doc(colRef), {
                   ...data,
                   createdAt: serverTimestamp(),
-                  updatedAt: serverTimestamp(),
+                  updatedAt: serverTimestamp()
                 });
               }
 
@@ -120,7 +120,7 @@ export default function PlaylistForm({
           />
 
           <div>
-            <Button className="float-right" type="submit" disabled={loading}>
+            <Button className="float-right" type="submit" isLoading={loading}>
               Submit
             </Button>
           </div>
